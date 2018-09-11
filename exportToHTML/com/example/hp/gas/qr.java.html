@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>qr.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+qr.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.hp.gas; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+</span><span class="s0">import </span><span class="s1">com.google.zxing.integration.android.IntentIntegrator; 
+</span><span class="s0">import </span><span class="s1">com.google.zxing.integration.android.IntentResult; 
+ 
+</span><span class="s0">import </span><span class="s1">org.json.JSONException; 
+</span><span class="s0">import </span><span class="s1">org.json.JSONObject; 
+ 
+</span><span class="s2">/** 
+ * Created by hp on 9/10/2018. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">qr </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">View.OnClickListener { 
+ 
+    </span><span class="s2">//View Objects</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">Button buttonScan; 
+    </span><span class="s0">private </span><span class="s1">TextView textViewName, textViewAddress; 
+ 
+    </span><span class="s2">//qr code scanner object</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">IntentIntegrator qrScan; 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.qr); 
+ 
+        </span><span class="s2">//View objects</span><span class="s1"> 
+        buttonScan = (Button) findViewById(R.id.buttonScan); 
+        textViewName = (TextView) findViewById(R.id.textViewName); 
+        textViewAddress = (TextView) findViewById(R.id.textViewAddress); 
+ 
+        </span><span class="s2">//intializing scan object</span><span class="s1"> 
+        qrScan = </span><span class="s0">new </span><span class="s1">IntentIntegrator(</span><span class="s0">this</span><span class="s1">); 
+ 
+        </span><span class="s2">//attaching onclick listener</span><span class="s1"> 
+        buttonScan.setOnClickListener(</span><span class="s0">this</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s2">//Getting the scan results</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onActivityResult(</span><span class="s0">int </span><span class="s1">requestCode, </span><span class="s0">int </span><span class="s1">resultCode, Intent data) { 
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data); 
+        </span><span class="s0">if </span><span class="s1">(result != </span><span class="s0">null</span><span class="s1">) { 
+            </span><span class="s2">//if qrcode has nothing in it</span><span class="s1"> 
+            </span><span class="s0">if </span><span class="s1">(result.getContents() == </span><span class="s0">null</span><span class="s1">) { 
+                Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Result Not Found&quot;</span><span class="s1">, Toast.LENGTH_LONG).show(); 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                </span><span class="s2">//if qr contains data</span><span class="s1"> 
+                </span><span class="s0">try </span><span class="s1">{ 
+                    </span><span class="s2">//converting the data to json</span><span class="s1"> 
+                    JSONObject obj = </span><span class="s0">new </span><span class="s1">JSONObject(result.getContents()); 
+                    </span><span class="s2">//setting values to textviews</span><span class="s1"> 
+                    textViewName.setText(obj.getString(</span><span class="s3">&quot;name&quot;</span><span class="s1">)); 
+                    textViewAddress.setText(obj.getString(</span><span class="s3">&quot;address&quot;</span><span class="s1">)); 
+                } </span><span class="s0">catch </span><span class="s1">(JSONException e) { 
+                    e.printStackTrace(); 
+                    </span><span class="s2">//if control comes here</span><span class="s1"> 
+                    </span><span class="s2">//that means the encoded format not matches</span><span class="s1"> 
+                    </span><span class="s2">//in this case you can display whatever data is available on the qrcode</span><span class="s1"> 
+                    </span><span class="s2">//to a toast</span><span class="s1"> 
+                    Toast.makeText(</span><span class="s0">this</span><span class="s1">, result.getContents(), Toast.LENGTH_LONG).show(); 
+                } 
+            } 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            </span><span class="s0">super</span><span class="s1">.onActivityResult(requestCode, resultCode, data); 
+        } 
+    } 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onClick(View view) { 
+        </span><span class="s2">//initiating the qr code scan</span><span class="s1"> 
+        qrScan.initiateScan(); 
+    } 
+}</span></pre>
+</body>
+</html>

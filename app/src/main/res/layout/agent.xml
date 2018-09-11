@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="قائمة الطلبات "
+        android:id="@+id/button"
+        android:layout_marginTop="114dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#FF0020"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:onClick="Ganesh"
+
+        android:textSize="@dimen/abc_text_size_headline_material" />
+
+    <Button
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="الطلب"
+        android:onClick="Ganesh"
+
+        android:id="@+id/button2"
+        android:background="#FF0020"
+        android:textColor="#FFFFFF"
+
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="@dimen/abc_text_size_headline_material"/>
+</LinearLayout>
