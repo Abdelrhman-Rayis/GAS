@@ -11,11 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".login" android:label="@string/app_name"
            >
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+           </activity>
 
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"
 
@@ -26,7 +22,15 @@
         <activity android:name=".orderlist"></activity>
         <activity android:name=".orderst"></activity>
         <activity android:name=".qr"></activity>
-        <activity android:name=".camera"></activity>
+        <activity android:name=".onlineOrder"></activity>
+         <activity android:name=".camera"></activity>
+         <activity android:name=".splash"
+
+            > <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
 
 
     </application>

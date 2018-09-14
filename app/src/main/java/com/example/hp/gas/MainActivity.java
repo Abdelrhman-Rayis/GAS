@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
         button_text =((Button)View).getText().toString();
         if(button_text.equals("طلب التعبئة"))
         {
-            Intent ganesh = new Intent(this,SecondActivity.class);
+            Intent ganesh = new Intent(this,onlineOrder.class);
             startActivity(ganesh);
         }
         else if (button_text.equals("الوكيل"))

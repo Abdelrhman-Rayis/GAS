@@ -29,7 +29,7 @@ import java.util.List;
 
 import static android.view.View.GONE;
 
-public class orderlist extends AppCompatActivity {
+public class onlineOrder extends AppCompatActivity {
 
     private static final int CODE_GET_REQUEST = 1024;
     private static final int CODE_POST_REQUEST = 1025;
@@ -48,7 +48,7 @@ public class orderlist extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.onlineorderlist);
+        setContentView(R.layout.onlineorder);
 
         editTextHeroId = (EditText) findViewById(R.id.editTextHeroId);
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -231,7 +231,7 @@ public class orderlist extends AppCompatActivity {
         List<Hero> heroList;
 
         public HeroAdapter(List<Hero> heroList) {
-            super(orderlist.this, R.layout.layout_hero_list2, heroList);
+            super(onlineOrder.this, R.layout.layout_hero_list, heroList);
             this.heroList = heroList;
         }
 
@@ -239,9 +239,9 @@ public class orderlist extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
-            View listViewItem = inflater.inflate(R.layout.layout_hero_list2, null, true);
+            View listViewItem = inflater.inflate(R.layout.layout_hero_list, null, true);
 
-            TextView textView = (TextView) listViewItem.findViewById(R.id.textViewName);
+             TextView textView = (TextView) listViewItem.findViewById(R.id.textViewName);
 
             TextView textViewUpdate = (TextView) listViewItem.findViewById(R.id.textViewUpdate);
             TextView textViewDelete = (TextView) listViewItem.findViewById(R.id.textViewDelete);
@@ -267,7 +267,7 @@ public class orderlist extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(orderlist.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(onlineOrder.this);
 
                     builder.setTitle("Delete " + hero.getName())
                             .setMessage("Are you sure you want to delete it?")

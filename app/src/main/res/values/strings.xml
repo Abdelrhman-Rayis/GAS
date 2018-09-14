@@ -5,4 +5,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <array name="teams">
+        <item>Khartoum</item>
+        <item>Omdurman</item>
+        <item>Bahri</item>
+        <item>HQ</item>
+    </array>
 </resources>
